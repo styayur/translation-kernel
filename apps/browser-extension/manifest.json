@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Translation Kernel",
+  "version": "0.1.0",
+  "description": "A small translation kernel: semantic text, pluggable providers, reversible bilingual rendering.",
+  "minimum_chrome_version": "120",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "optional_host_permissions": [
+    "https://*/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_popup": "popup.html" },
+  "options_page": "options.html",
+  "commands": {
+    "translate": {
+      "suggested_key": { "default": "Alt+T" },
+      "description": "Translate page"
+    },
+    "restore": {
+      "suggested_key": { "default": "Alt+R" },
+      "description": "Restore page"
+    },
+    "bilingual": {
+      "suggested_key": { "default": "Alt+B" },
+      "description": "Toggle bilingual"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"
+  }
+}

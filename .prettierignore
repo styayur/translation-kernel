@@ -1,0 +1,8 @@
+pnpm-lock.yaml
+dist
+release
+test-results
+playwright-report
+LICENSE
+licenses
+.local

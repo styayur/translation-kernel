@@ -1,0 +1,81 @@
+{
+  "environment": {
+    "node": "v26.7.0",
+    "platform": "win32",
+    "date": "2026-10-07T22:24:08.545Z",
+    "browser": "153.0.8010.12",
+    "runs": 1
+  },
+  "notes": [
+    "Single local run, no performance guarantee.",
+    "Text bytes estimate excludes DOM, JS objects, engine and provider memory.",
+    "Dynamic elapsed measures insertion to model callback, including the 80 ms debounce.",
+    "Translation overhead subtracts measured scan/render and deterministic provider time from the whole kernel run; no network API is used."
+  ],
+  "metrics": [
+    {
+      "requestedNodes": 1000,
+      "domNodes": 1001,
+      "segments": 200,
+      "scanMs": 20.69999998807907,
+      "renderMs": 3,
+      "restoreMs": 0.3999999761581421,
+      "dynamicElapsedMs": 81.5,
+      "dynamicSegmentCount": 201,
+      "translationOverheadMs": 2.6000001430511475,
+      "kernelTotalMs": 16.899999976158142,
+      "kernelScanMs": 11.800000011920929,
+      "kernelRenderMs": 2.3999998569488525,
+      "providerMs": 0.09999996423721313,
+      "estimatedTextBytes": 14980
+    },
+    {
+      "requestedNodes": 10000,
+      "domNodes": 10001,
+      "segments": 2000,
+      "scanMs": 75.90000003576279,
+      "renderMs": 11.300000011920929,
+      "restoreMs": 2,
+      "dynamicElapsedMs": 94.5,
+      "dynamicSegmentCount": 2001,
+      "translationOverheadMs": 6.699999809265137,
+      "kernelTotalMs": 96,
+      "kernelScanMs": 74.60000002384186,
+      "kernelRenderMs": 14.500000178813934,
+      "providerMs": 0.19999998807907104,
+      "estimatedTextBytes": 153780
+    },
+    {
+      "requestedNodes": 50000,
+      "domNodes": 50001,
+      "segments": 10000,
+      "scanMs": 462.5,
+      "renderMs": 82.59999996423721,
+      "restoreMs": 3.5,
+      "dynamicElapsedMs": 284.69999998807907,
+      "dynamicSegmentCount": 10001,
+      "translationOverheadMs": 52.89999973773956,
+      "kernelTotalMs": 602.6000000238419,
+      "kernelScanMs": 432.60000002384186,
+      "kernelRenderMs": 116.20000040531158,
+      "providerMs": 0.8999998569488525,
+      "estimatedTextBytes": 777780
+    }
+  ],
+  "bundleBytes": {
+    "background.js": 13434,
+    "content.js": 16704,
+    "LICENSE": 34674,
+    "manifest.json": 1017,
+    "MPL-2.0-LICENSE": 16727,
+    "NOTICE": 491,
+    "options.html": 4086,
+    "popup.html": 1141,
+    "VITE-LICENSE": 108786,
+    "assets\\options-b3MiOJWD.js": 8029,
+    "assets\\popup-CsyfKu_A.js": 1432,
+    "assets\\ui-Buy1zaOK.css": 2263,
+    "assets\\ui-CrrxGSY9.js": 670
+  },
+  "totalBundleBytes": 209454
+}

@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-07T15:12:58.215Z",
+  "browser": "153.0.8010.12",
+  "method": "Live pages in isolated Chromium, built HTML adapter, actual keyless Google sample translations. Test harness bypasses page CSP solely to load SDK. No user browser profile or credentials.",
+  "pages": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Translation",
+      "domNodes": 14749,
+      "segments": 633,
+      "scanMs": 110.5,
+      "apiMs": 1008.2993999999999,
+      "renderMs": 1.5,
+      "restoreMs": 0.30000001192092896,
+      "rendered": 3,
+      "restored": true,
+      "reverseDirection": true,
+      "sampleTranslation": "此条目介绍的是语言翻译。关于其他用法，请见“翻译 (消歧义)”。",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "url": "https://github.com/microsoft/TypeScript",
+      "domNodes": 2298,
+      "segments": 21,
+      "scanMs": 41,
+      "apiMs": 1027.2711,
+      "renderMs": 0.5,
+      "restoreMs": 0,
+      "rendered": 3,
+      "restored": true,
+      "reverseDirection": true,
+      "sampleTranslation": "打字稿",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver",
+      "domNodes": 1555,
+      "segments": 34,
+      "scanMs": 20.19999998807907,
+      "apiMs": 768.5874999999996,
+      "renderMs": 0.3999999761581421,
+      "restoreMs": 0,
+      "rendered": 3,
+      "restored": true,
+      "reverseDirection": true,
+      "sampleTranslation": "变异观察者",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "url": "https://react.dev/learn",
+      "domNodes": 4372,
+      "segments": 79,
+      "scanMs": 19.299999952316284,
+      "apiMs": 677.4115000000002,
+      "renderMs": 0.40000003576278687,
+      "restoreMs": 0.09999996423721313,
+      "rendered": 3,
+      "restored": true,
+      "reverseDirection": true,
+      "sampleTranslation": "学习反应",
+      "status": "passed",
+      "pageErrors": []
+    }
+  ]
+}

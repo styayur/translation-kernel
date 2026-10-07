@@ -1,0 +1,138 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+:root {
+  color-scheme: light dark;
+  font-family:
+    Segoe UI,
+    system-ui,
+    sans-serif;
+  color: light-dark(#172438, #e4eaf2);
+  background: light-dark(#f5f7fa, #172438);
+  font-size: 14px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+h1 {
+  font-size: 23px;
+  font-weight: 650;
+  margin: 0 0 6px;
+}
+.subtitle {
+  margin: 0 0 22px;
+  color: light-dark(#526579, #bdccdd);
+}
+.popup {
+  width: 340px;
+  padding: 20px;
+}
+.options {
+  max-width: 780px;
+  margin: 40px auto;
+  padding: 0 24px 32px;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+button,
+.file-button {
+  font: inherit;
+  border: 1px solid light-dark(#c1ccd8, #627286);
+  border-radius: 5px;
+  background: light-dark(#fff, #25374f);
+  color: inherit;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.primary {
+  background: #245a9b;
+  color: #fff;
+  border-color: #245a9b;
+}
+button:hover,
+.file-button:hover {
+  filter: brightness(0.93);
+}
+label {
+  display: block;
+  margin: 10px 0 4px;
+}
+input,
+select,
+textarea {
+  font: inherit;
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  background: light-dark(#fff, #25374f);
+  color: inherit;
+  border: 1px solid light-dark(#b5c3d1, #687b91);
+  border-radius: 4px;
+}
+textarea {
+  font-family: Consolas, monospace;
+  font-size: 13px;
+}
+fieldset {
+  border: 0;
+  border-top: 1px solid light-dark(#c6d1dd, #53667e);
+  padding: 20px 0;
+  margin: 0;
+}
+legend {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0 8px 0 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 20px;
+}
+.provider {
+  border-left: 3px solid #245a9b;
+  padding: 0 0 10px 14px;
+  margin: 16px 0;
+}
+.hint {
+  font-size: 12px;
+  line-height: 1.55;
+  color: light-dark(#526579, #bdccdd);
+}
+#status {
+  min-height: 20px;
+  overflow-wrap: anywhere;
+}
+#actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.file-button {
+  margin: 0;
+}
+.file-button input {
+  width: 170px;
+  font-size: 11px;
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #649fe4;
+  outline-offset: 2px;
+}
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .options {
+    margin: 24px auto;
+  }
+}
