@@ -8,7 +8,7 @@ import {
   type Page,
 } from '@playwright/test';
 import { resolve } from 'node:path';
-import { cp, readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import {
   defaultConfig,
   type KernelConfig,
@@ -36,6 +36,20 @@ test.beforeAll(async () => {
 });
 test.afterAll(async () => {
   await context?.close();
+});
+test('capture real settings with no saved secrets', async () => {
+  await worker.evaluate(async () => chrome.storage.local.clear());
+  const page = await context.newPage();
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto(`chrome-extension://${id}/options.html`);
+  await expect(
+    page.getByRole('heading', { name: 'Translation Kernel', exact: true }),
+  ).toBeVisible();
+  await mkdir('docs/assets', { recursive: true });
+  await page.screenshot({
+    path: 'docs/assets/extension-settings-v0.1.0.png',
+  });
+  await page.close();
 });
 async function configure(failure = false, target = 'zh-CN') {
   await worker.evaluate(
