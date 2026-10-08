@@ -4,6 +4,11 @@
 
 A lightweight translation kernel for the browser.
 
+![Translation Kernel v0.1.0 extension settings showing language, display and provider configuration in a fresh Chromium profile](docs/assets/extension-settings-v0.1.0.png)
+
+Real Chromium extension settings, captured with a fresh profile and no API keys.
+This shows configuration, not a translation-quality claim. [Capture steps](docs/README_SCREENSHOTS.md).
+
 **Translation Kernel provides primitives and APIs. External tools provide workflows.**
 
 Small core, rich API, loose coupling, composable tools. The core discovers webpage text, builds semantic segments, schedules translation providers and renders reversible bilingual text. No accounts or backend are required.
@@ -102,7 +107,7 @@ See [Architecture](ARCHITECTURE.md), [Provider API](docs/provider-api.md), [Acti
 
 ## License
 
-This repository follows [Stya Yur Open Source Studio's license policy](https://github.com/styayur/styayur/blob/main/LICENSE_POLICY.md), using separate terms for the library and application:
+This repository follows [Stya Yur's license policy](https://github.com/styayur/styayur/blob/main/LICENSE_POLICY.md), using separate terms for the library and application:
 
 - **Reusable kernel, SDK, example modules, project documentation and test/build support:** [MPL-2.0](LICENSE). File-level copyleft preserves changes to the reusable engine while permitting independently licensed integrations. Documentation describes this software and is distributed with it.
 - **Browser application (`apps/browser-extension/`), including its bundled distributed form:** [GPL-3.0-or-later](apps/browser-extension/LICENSE), as required for full applications. The included MPL-covered files remain under MPL in source; they are compatible with this combined GPL distribution under MPL 2.0 Section 3.3.
