@@ -105,6 +105,40 @@ docs/                   contracts, architecture and verification evidence
 
 See [Architecture](ARCHITECTURE.md), [Provider API](docs/provider-api.md), [Action API](docs/action-api.md), [Event API](docs/event-api.md), [Adapter API](docs/adapter-api.md), [Site rules](docs/site-rules.md) and [Contributing](CONTRIBUTING.md).
 
+## Architecture
+
+<!-- architecture:overview:start -->
+
+```mermaid
+flowchart TB
+  subgraph page[Content script / page DOM boundary]
+    DOM[HtmlAdapter: scan and segment]
+    Kernel[TranslationKernel: batches and cache]
+    Render[DomRenderer: bilingual text]
+    Restore[restore: abort and remove translations]
+    DOM --> Kernel
+    Kernel -->|validated results| Render
+    Kernel -->|user Restore / pagehide| Restore --> DOM
+  end
+  subgraph worker[Extension service worker]
+    Guard[Validate sender and batch]
+    Router[ProviderRouter: retry and fallback]
+    Config[(chrome.storage.local / trusted contexts)]
+    Guard --> Router
+    Config --> Router
+  end
+  Kernel <-->|runtime messages; no provider secrets| Guard
+  Router <-->|HTTPS or loopback HTTP| Providers[Google / OpenAI-compatible / Ollama]
+```
+
+<!-- architecture:overview:end -->
+
+This is the Chromium extension composition. A standalone SDK consumer supplies its own DocumentAdapter and ProviderRouter; it does not require an extension worker. HtmlAdapter applies site rules, segments eligible text and observes DOM changes. The kernel batches up to 16 segments and caches translations in memory.
+
+The content bridge sends batches and cancellation messages to the worker. The worker validates extension identity, top-frame origin, batch limits and request IDs before invoking providers with retry/fallback. Stored credentials remain in trusted extension contexts, but are not encrypted at rest. DomRenderer assigns textContent rather than executing provider markup. Restore aborts work, disconnects observation and restores original text; it is not a persistent page-history system.
+
+[Source evidence and diagram verification](docs/architecture/README.md).
+
 ## License
 
 This repository follows [Stya Yur's license policy](https://github.com/styayur/styayur/blob/main/LICENSE_POLICY.md), using separate terms for the library and application:
