@@ -1,0 +1,39 @@
+{
+  "source_commit": "6a221457670b7a3871d00ff4ca40ae8952d32252",
+  "reviewed_on": "2026-10-09",
+  "diagram_source": "README.md",
+  "sources": [
+    {
+      "path": "packages/core/src/index.ts",
+      "anchors": ["class TranslationKernel", "restore(): void", "offset += 16"]
+    },
+    {
+      "path": "packages/dom/src/index.ts",
+      "anchors": ["class HtmlAdapter", "MutationObserver", "segmentText"]
+    },
+    {
+      "path": "packages/renderer/src/index.ts",
+      "anchors": [
+        "class DomRenderer",
+        "translated.textContent",
+        "restore(): void"
+      ]
+    },
+    {
+      "path": "packages/provider-api/src/index.ts",
+      "anchors": ["class ProviderRouter"]
+    },
+    {
+      "path": "apps/browser-extension/src/content.ts",
+      "anchors": ["translate.cancel", "config.public"]
+    },
+    {
+      "path": "apps/browser-extension/src/background.ts",
+      "anchors": ["TRUSTED_CONTEXTS", "sender.frameId !== 0", "retries: 1"]
+    },
+    {
+      "path": "tests/unit/lifecycle.test.ts",
+      "anchors": ["restore"]
+    }
+  ]
+}
