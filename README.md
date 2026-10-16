@@ -4,6 +4,11 @@
 
 A lightweight translation kernel for the browser.
 
+![Translation Kernel v0.1.0 extension settings showing language, display and provider configuration in a fresh Chromium profile](docs/assets/extension-settings-v0.1.0.png)
+
+Real Chromium extension settings, captured with a fresh profile and no API keys.
+This shows configuration, not a translation-quality claim. [Capture steps](docs/README_SCREENSHOTS.md).
+
 **Translation Kernel provides primitives and APIs. External tools provide workflows.**
 
 Small core, rich API, loose coupling, composable tools. The core discovers webpage text, builds semantic segments, schedules translation providers and renders reversible bilingual text. No accounts or backend are required.
@@ -100,9 +105,43 @@ docs/                   contracts, architecture and verification evidence
 
 See [Architecture](ARCHITECTURE.md), [Provider API](docs/provider-api.md), [Action API](docs/action-api.md), [Event API](docs/event-api.md), [Adapter API](docs/adapter-api.md), [Site rules](docs/site-rules.md) and [Contributing](CONTRIBUTING.md).
 
+## Architecture
+
+<!-- architecture:overview:start -->
+
+```mermaid
+flowchart TB
+  subgraph page[Content script / page DOM boundary]
+    DOM[HtmlAdapter: scan and segment]
+    Kernel[TranslationKernel: batches and cache]
+    Render[DomRenderer: bilingual text]
+    Restore[restore: abort and remove translations]
+    DOM --> Kernel
+    Kernel -->|validated results| Render
+    Kernel -->|user Restore / pagehide| Restore --> DOM
+  end
+  subgraph worker[Extension service worker]
+    Guard[Validate sender and batch]
+    Router[ProviderRouter: retry and fallback]
+    Config[(chrome.storage.local / trusted contexts)]
+    Guard --> Router
+    Config --> Router
+  end
+  Kernel <-->|runtime messages; no provider secrets| Guard
+  Router <-->|HTTPS or loopback HTTP| Providers[Google / OpenAI-compatible / Ollama]
+```
+
+<!-- architecture:overview:end -->
+
+This is the Chromium extension composition. A standalone SDK consumer supplies its own DocumentAdapter and ProviderRouter; it does not require an extension worker. HtmlAdapter applies site rules, segments eligible text and observes DOM changes. The kernel batches up to 16 segments and caches translations in memory.
+
+The content bridge sends batches and cancellation messages to the worker. The worker validates extension identity, top-frame origin, batch limits and request IDs before invoking providers with retry/fallback. Stored credentials remain in trusted extension contexts, but are not encrypted at rest. DomRenderer assigns textContent rather than executing provider markup. Restore aborts work, disconnects observation and restores original text; it is not a persistent page-history system.
+
+[Source evidence and diagram verification](docs/architecture/README.md).
+
 ## License
 
-This repository follows [Stya Yur Open Source Studio's license policy](https://github.com/styayur/styayur/blob/main/LICENSE_POLICY.md), using separate terms for the library and application:
+This repository follows [Stya Yur's license policy](https://github.com/styayur/styayur/blob/main/LICENSE_POLICY.md), using separate terms for the library and application:
 
 - **Reusable kernel, SDK, example modules, project documentation and test/build support:** [MPL-2.0](LICENSE). File-level copyleft preserves changes to the reusable engine while permitting independently licensed integrations. Documentation describes this software and is distributed with it.
 - **Browser application (`apps/browser-extension/`), including its bundled distributed form:** [GPL-3.0-or-later](apps/browser-extension/LICENSE), as required for full applications. The included MPL-covered files remain under MPL in source; they are compatible with this combined GPL distribution under MPL 2.0 Section 3.3.
