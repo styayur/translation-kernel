@@ -56,6 +56,7 @@ execFileSync(
   process.execPath,
   [
     resolve('node_modules/typescript/bin/tsc'),
+    '--ignoreConfig',
     '--declaration',
     '--emitDeclarationOnly',
     '--outDir',
